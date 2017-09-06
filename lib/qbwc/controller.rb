@@ -122,6 +122,7 @@ QWC
         if !session.pending_jobs.any?
           QBWC.logger.info "Authentication of user '#{username}' succeeded, but no jobs pending for '#{company_file_path}'."
           company_file_path = AUTHENTICATE_NO_WORK
+          session.destroy
         else
           QBWC.logger.info "Authentication of user '#{username}' succeeded, jobs are pending for '#{company_file_path}'."
           QBWC.session_initializer.call(session) unless QBWC.session_initializer.nil?
