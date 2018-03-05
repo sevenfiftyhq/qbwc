@@ -74,7 +74,7 @@ class QBWC::Session
       request = request.to_hash
       request.delete('xml_attributes')
       request.values.first['xml_attributes'] = {'iterator' => 'Continue', 'iteratorID' => self.iterator_id}
-      request = QBWC::Request.new(request)
+      request = QBWC::Request.new(request, self)
     end 
     request
   end
