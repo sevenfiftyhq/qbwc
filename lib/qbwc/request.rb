@@ -2,14 +2,14 @@ class QBWC::Request
 
   attr_reader   :request, :response_proc
 
-  def initialize(request)
+  def initialize(request, session)
     #Handle Cases for a request passed in as a Hash or String
     #If it's a hash verify that it is properly wrapped with qbxml_msg_rq and xml_attributes for on_error events
     #Allow strings of QBXML to be passed in directly. 
     case
     when request.is_a?(Hash)
       request = self.class.wrap_request(request)
-      @request = QBWC.write_parser.to_qbxml(request, {:validate => true})
+      @request = QBWC.write_parser(session).to_qbxml(request, {:validate => true})
     when request.is_a?(String)
       @request = request
     else

@@ -114,7 +114,7 @@ class QBWC::Job
     return nil if ri.nil? || reqs.nil? || ri >= reqs.length
     nr = reqs[ri]
     QBWC.logger.info("Next request is '#{nr}'.") if QBWC.log_requests_and_responses
-    return QBWC::Request.new(nr) if nr
+    return QBWC::Request.new(nr, session) if nr
   end
   alias :next :next_request  # Deprecated method name 'next'
 
