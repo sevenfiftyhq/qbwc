@@ -27,7 +27,7 @@ class QBWC::Job
     request_list = requests(session)
     completed_request = request_list[request_index(session)] if request_list
     advance_next_request(session) if advance
-    worker.handle_response(response, session, self, completed_request, data)
+    worker.handle_response_with_qbxml(qbxml_response, response, session, self, completed_request, data)
   end
 
   def advance_next_request(session)
