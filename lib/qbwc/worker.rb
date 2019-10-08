@@ -12,5 +12,9 @@ module QBWC
     def handle_response(response, session, job, request, data)
     end
 
+    def handle_response_with_qbxml(qbxml_response, response, session, job, request, data)
+      handle_response(response, session, job, request, data)
+    end
+
   end
 end

@@ -90,8 +90,10 @@ class QBWC::Session
 
   def response=(qbxml_response)
     parse_response_xml(qbxml_response) do |response|
-      response = response[response.keys.first]
-      parse_response_header(response) if response
+      if response
+        response = response[response.keys.first]
+        parse_response_header(response)
+      end
       self.current_job.process_response(qbxml_response, response, self, iterator_id.blank?) unless self.current_job.nil?
       self.next_request # search next request
     end
