@@ -80,7 +80,7 @@ module QBWC
   # By default this is the exception message.
   # Takes the exception object and the QBXML response data currently being processed.
   mattr_accessor :handle_exception
-  @@handle_exception = Proc.new { |e, qbxml_response| e.message }
+  @@handle_exception = Proc.new { |e, session, qbxml_response| e.message }
 
   # Perform actions on the initial data sent by QB on each session start
   mattr_accessor :received_initial_request
