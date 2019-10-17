@@ -75,9 +75,12 @@ module QBWC
   mattr_accessor :log_requests_and_responses
   @@log_requests_and_responses = Rails.env == 'production' ? false : true
 
-  # Return a custom error message to the web connector instead of the exception's
-  mattr_accessor :error_message
-  @@error_message = nil
+  # Handler for any exceptions raised during request processing (including execution of qbwc_jobs)
+  # Result must be a string; this is the error text which will be displayed on the web connector itself.
+  # By default this is the exception message.
+  # Takes the exception object and the QBXML response data currently being processed.
+  mattr_accessor :handle_exception
+  @@handle_exception = Proc.new { |e, session, qbxml_response| e.message }
 
   # Perform actions on the initial data sent by QB on each session start
   mattr_accessor :received_initial_request
