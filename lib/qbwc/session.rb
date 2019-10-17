@@ -167,7 +167,7 @@ class QBWC::Session
       end
       yield response
     rescue => e
-      self.error = QBWC.error_message || e.message
+      self.error = QBWC.handle_exception(e, qbxml_response)
       QBWC.logger.warn "An error occured in QBWC::Session: #{e.message}"
       QBWC.logger.warn e.backtrace.join("\n")
     end
