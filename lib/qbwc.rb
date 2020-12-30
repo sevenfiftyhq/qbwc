@@ -145,7 +145,7 @@ module QBWC
       @@parser[min_version] ||= Qbxml.new(api, min_version)
     end
 
-    def write_parser(session = nil)
+    def serializer(session = nil)
       ver = serialization_version.is_a?(Proc) ? serialization_version.call(session) : serialization_version
       ver ||= min_version
       @@parser ||= {}
